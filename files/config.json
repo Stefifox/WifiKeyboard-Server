@@ -1,0 +1,14 @@
+{
+  "buttons":[
+    {
+      "id": 0,
+      "name": "Microphone",
+      "key": "f13"
+    },
+    {
+      "id": 1,
+      "name": "Audio",
+      "key": "f14"
+    }
+  ]
+}
