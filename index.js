@@ -7,7 +7,7 @@ const app = express()
 const port = 3500;
 
 app.get('/connect', (req, res)=>{
-    res.status(200).json({"status":"OK", "connected":"true"})
+    res.status(200).json({"status":"OK", "connected":"true", "configs":configs})
 })
 
 app.get('/info', (req, res)=>{
