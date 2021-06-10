@@ -1,19 +1,31 @@
 {
   "name": "keyserver",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Server for remote app or arduino",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "keywords": [],
-  "author": "StefifoxApps",
-  "license": "ISC",
-  "devDependencies": {
-    "node-key-sender": "^1.0.11"
-  },
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "express": "^4.17.1",
+    "node-key-sender": "^1.0.11",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stefifox/WifiKeyboard-Server.git"
+  },
+  "keywords": [
+    "server",
+    "opensource",
+    "keyboard",
+    "app"
+  ],
+  "author": "StefifoxApps",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/Stefifox/WifiKeyboard-Server/issues"
+  },
+  "homepage": "https://github.com/Stefifox/WifiKeyboard-Server#readme"
 }

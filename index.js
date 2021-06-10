@@ -17,9 +17,9 @@ app.get('/info', (req, res)=>{
 app.get('/key', (req, res)=>{
     let data = req.query
     let id = data.id
-    console.log(id)
+    //console.log(id)
     configs.buttons.forEach(e =>{
-        console.log(e)
+        //console.log(e)
         if(e.id == id){
             ks.sendKey(e.key)
             res.status(200).json(e)
