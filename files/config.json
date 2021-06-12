@@ -1,24 +1,23 @@
 {
-  "buttons":[
+  "general":{
+    "server_port":"3500"
+  },
+  "buttons":
+  [
     {
-      "id": 0,
-      "name": "Microphone",
-      "key": "f13"
+      "id":0,
+      "name":"Microphone",
+      "key":"f13"
     },
     {
-      "id": 1,
-      "name": "Audio",
-      "key": "f14"
+      "id":1,
+      "name":"Audio",
+      "key":"f14"
     },
     {
-      "id": 2,
-      "name": "Mod. Streamer",
-      "key": "f15"
-    },
-    {
-      "id": 3,
-      "name": "Telegram-mic",
-      "key": ""
+      "id":2,
+      "name":"Mod. Streamer",
+      "key":"f15"
     }
   ]
 }

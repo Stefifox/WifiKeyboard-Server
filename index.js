@@ -1,13 +1,16 @@
 const ks = require('node-key-sender')
 const express = require('express')
 const path = require('path');
-const configs = require('./files/config.json')
+const fs = require('fs')
 
 const app = express()
-const port = 3500;
 
 let version = "0.1.1"
 let versionCode = 2
+
+let raw = fs.readFileSync(path.join(process.cwd(), "/files/config.json"))
+let configs = JSON.parse(raw)
+let port = configs.general.server_port
 
 app.get('/connect', (req, res)=>{
     res.status(200).json({"status":"OK", "connected":"true", "server_version": version, "version_code":versionCode ,"configs":configs})
@@ -18,10 +21,31 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/info', (req, res)=>{
-    res.status(200).sendFile(path.join(__dirname, "/files/info.html"))
+    res.status(200).sendFile(path.join(process.cwd(), "/files/info.html"))
 })
 
-app.get('/status', (req, res)=>{
+app.get('/reload', (req, res)=>{
+    let tempraw = fs.readFileSync(path.join(process.cwd(), "/files/config.json"))
+    configs = JSON.parse(tempraw)
+})
+
+app.get('/addbutton', (req, res)=>{
+    let q = req.query
+    let id = q.id
+    let name = q.name
+    let key = q.key
+
+    let json = configs
+
+    let newbutton = new Object()
+    newbutton.id = parseInt(id)
+    newbutton.name = name
+    newbutton.key = key
+
+    configs.buttons.push(newbutton)
+    console.log(configs)
+    fs.writeFileSync(path.join(process.cwd(), "/files/config.json"), JSON.stringify(configs))
+    res.status(200).send("ok")
 
 })
 
