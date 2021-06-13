@@ -8,11 +8,16 @@ const app = express()
 let version = "0.1.1"
 let versionCode = 2
 
-let raw = fs.readFileSync(path.join(process.cwd(), "/files/config.json"))
-let configs = JSON.parse(raw)
-let port = configs.general.server_port
+console.log(`Welcome\nStarting Server...`)
+
+let data = fs.readFileSync(path.join(process.cwd(), "/files/config.json"))
+console.log("Reading config file")
+configs = JSON.parse(data)
+port = configs.general.server_port
 
 app.get('/connect', (req, res)=>{
+    let ip = req.socket.remoteAddress.split(':')
+    console.log("New connection from " + ip[3])
     res.status(200).json({"status":"OK", "connected":"true", "server_version": version, "version_code":versionCode ,"configs":configs})
 })
 
@@ -62,4 +67,8 @@ app.get('/key', (req, res)=>{
     })
 })
 
-app.listen(port, () => console.log(`App listening on port ${port}`))
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`)
+    console.log(`Current Version: ${version} - ${versionCode}`)
+})
