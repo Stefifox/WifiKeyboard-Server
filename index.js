@@ -5,19 +5,19 @@ const fs = require('fs')
 
 const app = express()
 
-let version = "0.1.1"
+let version = "0.1.2 beta"
 let versionCode = 2
 
-console.log(`Welcome\nStarting Server...`)
+console.log(`[START]Welcome\n[START]Starting Server...`)
 
 let data = fs.readFileSync(path.join(process.cwd(), "/files/config.json"))
-console.log("Reading config file")
+console.log("[INFO]Reading config file")
 configs = JSON.parse(data)
 port = configs.general.server_port
 
 app.get('/connect', (req, res)=>{
     let ip = req.socket.remoteAddress.split(':')
-    console.log("New connection from " + ip[3])
+    console.log("[SERVER]New connection from " + ip[3])
     res.status(200).json({"status":"OK", "connected":"true", "server_version": version, "version_code":versionCode ,"configs":configs})
 })
 
@@ -32,6 +32,8 @@ app.get('/info', (req, res)=>{
 app.get('/reload', (req, res)=>{
     let tempraw = fs.readFileSync(path.join(process.cwd(), "/files/config.json"))
     configs = JSON.parse(tempraw)
+    console.log("[INFO]Reloaded config file")
+    res.status(200).json({"status":"ok"})
 })
 
 app.get('/addbutton', (req, res)=>{
@@ -48,11 +50,13 @@ app.get('/addbutton', (req, res)=>{
     newbutton.key = key
 
     configs.buttons.push(newbutton)
-    console.log(configs)
+    console.log("[INFO]Added button: ", newbutton)
     fs.writeFileSync(path.join(process.cwd(), "/files/config.json"), JSON.stringify(configs))
-    res.status(200).send("ok")
+    res.status(200).send(`<p>Button ${name} added</p></br><a href="http://localhost:${port}">return to home</a>`)
 
 })
+
+
 
 app.get('/key', (req, res)=>{
     let data = req.query
@@ -69,6 +73,7 @@ app.get('/key', (req, res)=>{
 
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-    console.log(`Current Version: ${version} - ${versionCode}`)
+    console.log(`[SEVER]Listening on port ${port}`)
+    console.log(`[INFO]Homepage and settings at http://localhost:${port}`)
+    console.log(`[INFO]Current Version: ${version} - ${versionCode}`)
 })
