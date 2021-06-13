@@ -22,11 +22,11 @@ app.get('/connect', (req, res)=>{
 })
 
 app.get('/', (req, res)=>{
-    res.status(200).send("<h1>Home Page</h1><h3>Server Version " + version + "</h3>")
+    res.status(200).sendFile(path.join(__dirname, "/files/homepage.html"))
 })
 
 app.get('/info', (req, res)=>{
-    res.status(200).sendFile(path.join(process.cwd(), "/files/info.html"))
+    res.status(200).sendFile(path.join(__dirname, "/files/info.html"))
 })
 
 app.get('/reload', (req, res)=>{
