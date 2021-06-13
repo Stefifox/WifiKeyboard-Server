@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "node-key-sender": "^1.0.11",
     "path": "^0.12.7"
   },
@@ -23,7 +24,7 @@
     "app"
   ],
   "author": "StefifoxApps",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "GPL 3.0",
   "bugs": {
     "url": "https://github.com/Stefifox/WifiKeyboard-Server/issues"
   },
